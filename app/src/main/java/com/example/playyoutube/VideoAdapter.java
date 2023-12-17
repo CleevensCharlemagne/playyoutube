@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-// Créer la classe VideoAdapter
+
 public class VideoAdapter extends RecyclerView.Adapter<ViewHolder> {
     List<ItemVideo> videoList;
 
@@ -33,7 +33,6 @@ public class VideoAdapter extends RecyclerView.Adapter<ViewHolder> {
         ItemVideo video = videoList.get(position);
         holder.title.setText(video.getTitle());
 
-        // Load the thumbnail image with Glide
         Glide.with(holder.itemView.getContext())
                 .load(video.getThumbnailUrl())
                 .into(holder.thumbnail);

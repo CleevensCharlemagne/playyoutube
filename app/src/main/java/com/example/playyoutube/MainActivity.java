@@ -62,10 +62,9 @@ public class MainActivity extends AppCompatActivity {
                             if (thumbnail != null && item.getSnippet().getTitle() != null && item.getSnippet().getResourceId() != null) {
                                 String title = item.getSnippet().getTitle();
                                 String thumbnailUrl = thumbnail.getUrl();
-                                String videoId = item.getSnippet().getResourceId().getVideoId(); // Modifiez ceci
+                                String videoId = item.getSnippet().getResourceId().getVideoId();
 
                                 String url = videoId;
-                                // Utilisez l'URL comme vous le souhaitez
                                 videoList.add(new ItemVideo(title, thumbnailUrl, url));
                             }
 

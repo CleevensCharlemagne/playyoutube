@@ -36,12 +36,12 @@ public class PlaylistResponse {
             return thumbnails;
         }
 
-        public ResourceId getResourceId() { // Ajoutez ceci
+        public ResourceId getResourceId() {
             return resourceId;
         }
     }
 
-    public static class ResourceId { // Ajoutez cette classe
+    public static class ResourceId {
         private String videoId;
 
         public String getVideoId() {

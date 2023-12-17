@@ -13,14 +13,14 @@ public class ItemVideo {
 
     String thumbnailUrl;
 
-    // Constructeur
+
     public ItemVideo(String title, String thumbnailUrl, String url) {
         this.title = title;
         this.url = url;
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    // Getters
+
     public String getTitle() {
         return title;
     }

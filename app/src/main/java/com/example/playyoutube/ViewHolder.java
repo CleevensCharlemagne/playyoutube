@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-// Créer la classe VideoViewHolder
 public class ViewHolder extends RecyclerView.ViewHolder {
     TextView title;
     ImageView thumbnail;
