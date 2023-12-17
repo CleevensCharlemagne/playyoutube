@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -8,9 +9,15 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:src="@drawable/baseline_videocam_24"
-        android:id="@+id/thumbnail"/>
+        android:id="@+id/thumbnail"
+        android:src="@drawable/thumbnail_holder"
+        android:layout_margin="5dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,5 +26,14 @@
         android:textStyle="bold"
         android:textSize="16sp"
         android:id="@+id/title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:id="@+id/id"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

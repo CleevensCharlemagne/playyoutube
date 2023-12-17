@@ -1,5 +1,7 @@
 package com.example.playyoutube;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,11 @@ import java.util.List;
 public class VideoAdapter extends RecyclerView.Adapter<ViewHolder> {
     List<ItemVideo> videoList;
 
+
     public VideoAdapter(List<ItemVideo> videoList) {
         this.videoList = videoList;
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,8 +35,21 @@ public class VideoAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         // Load the thumbnail image with Glide
         Glide.with(holder.itemView.getContext())
-                .load(video.getUrl())
+                .load(video.getThumbnailUrl())
                 .into(holder.thumbnail);
+
+        holder.id.setText(video.getUrl());
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent i = new Intent(context, VideoPlayerActivity.class);
+                i.putExtra("VIDEO_URL", video.getUrl());
+                context.startActivity(i);
+            }
+        });
+
     }
 
     @Override
