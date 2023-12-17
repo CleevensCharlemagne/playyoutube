@@ -29,40 +29,67 @@ public class MainActivity extends AppCompatActivity {
         YouTubeService service = YouTubeClient.getService();
         Call<PlaylistResponse> call = service.getPlaylistVideos
                 ("snippet,contentDetails",
-                50,
-                "PLcN5mm9xUxrbOVCN9G9EMzlBOwvjS_heN",
-                "AIzaSyC9a9nHYJWhgkhMqUEpTHvYNZwDnQ41QdE");
+                        50,
+                        "PLClySGDbKZTTSDanXKN4RhhHoB5bEUcJz",
+                        "AIzaSyC9a9nHYJWhgkhMqUEpTHvYNZwDnQ41QdE");
         call.enqueue(new Callback<PlaylistResponse>() {
 
             @Override
             public void onResponse(Call<PlaylistResponse> call, Response<PlaylistResponse> response) {
                 if (response.isSuccessful()) {
+
                     if (response.body() == null) {
                         Log.d("DEBUG", "response.body() is null");
                         return;
                     }
                     List<ItemVideo> videoList = new ArrayList<>();
                     for (PlaylistResponse.Item item : response.body().getItems()) {
-                        String title = item.getSnippet().getTitle();
-                        String url = item.getSnippet().getThumbnails().getDefault().getUrl();
-                        if (title != null && url != null) {
-                            videoList.add(new ItemVideo(title, url));
+                        if (item.getSnippet().getThumbnails() != null) {
+                            PlaylistResponse.Thumbnail thumbnail = null;
+
+                            if (item.getSnippet().getThumbnails().getDefault() != null) {
+                                thumbnail = item.getSnippet().getThumbnails().getDefault();
+                            } else if (item.getSnippet().getThumbnails().getHigh() != null) {
+                                thumbnail = item.getSnippet().getThumbnails().getHigh();
+                            } else if (item.getSnippet().getThumbnails().getMedium() != null) {
+                                thumbnail = item.getSnippet().getThumbnails().getMedium();
+                            } else if (item.getSnippet().getThumbnails().getStandard() != null) {
+                                thumbnail = item.getSnippet().getThumbnails().getStandard();
+                            } else if (item.getSnippet().getThumbnails().getMaxres() != null) {
+                                thumbnail = item.getSnippet().getThumbnails().getMaxres();
+                            }
+
+                            if (thumbnail != null && item.getSnippet().getTitle() != null && item.getSnippet().getResourceId() != null) {
+                                String title = item.getSnippet().getTitle();
+                                String thumbnailUrl = thumbnail.getUrl();
+                                String videoId = item.getSnippet().getResourceId().getVideoId(); // Modifiez ceci
+
+                                String url = videoId;
+                                // Utilisez l'URL comme vous le souhaitez
+                                videoList.add(new ItemVideo(title, thumbnailUrl, url));
+                            }
+
+
                         }
                     }
                     if (!videoList.isEmpty()) {
                         recyclerView.setAdapter(new VideoAdapter(videoList));
                     } else {
-                        // Handle the case when the videoList is empty
+                        Toast.makeText(MainActivity.this, "Video list is empty!!!", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<PlaylistResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this, "Resonse Failure!!!", Toast.LENGTH_SHORT).show();
             }
 
         });
+
+
     }
 
 }

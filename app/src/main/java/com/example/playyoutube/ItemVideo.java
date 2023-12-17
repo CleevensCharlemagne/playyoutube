@@ -11,10 +11,13 @@ public class ItemVideo {
     String title;
     String url;
 
+    String thumbnailUrl;
+
     // Constructeur
-    public ItemVideo(String title, String url) {
+    public ItemVideo(String title, String thumbnailUrl, String url) {
         this.title = title;
         this.url = url;
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     // Getters
@@ -24,5 +27,9 @@ public class ItemVideo {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 }
