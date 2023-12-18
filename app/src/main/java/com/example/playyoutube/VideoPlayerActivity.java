@@ -11,6 +11,7 @@ import com.pierfrancescosoffritti.youtubeplayer.player.AbstractYouTubePlayerList
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayer;
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerInitListener;
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerView;
+import android.content.res.Configuration;
 
 public class VideoPlayerActivity extends AppCompatActivity {
 
@@ -41,6 +42,14 @@ public class VideoPlayerActivity extends AppCompatActivity {
             }
 
         }, true);
+
+        // Set the player to play videos in landscape mode automatically
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            playerView.enterFullScreen();
+        } else {
+            playerView.exitFullScreen();
+        }
 
 
     }
